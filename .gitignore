@@ -1,4 +1,19 @@
+# Bo qua moi truong ao
 .venv/
-data/raw/
-data/processed/
+.vscode/
+Include/
+Lib/
+Scripts/
+share/
+pyvenv.cfg
+
+# Bo qua du lieu va file tam
+data/
 *.parquet
+*.csv
+*.db
+*.sqlite
+__pycache__/
+.ipynb_checkpoints/
+~$*.docx
+~$*.pptx
