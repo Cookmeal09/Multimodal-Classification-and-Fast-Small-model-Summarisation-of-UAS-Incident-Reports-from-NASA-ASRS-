@@ -19,5 +19,6 @@ FROM r GROUP BY 1 ORDER BY n DESC;
 CREATE OR REPLACE TABLE feat AS
 SELECT id AS id, year AS year, is_uas AS is_uas, 
        y AS y, narrative AS narrative, flight_phase AS flight_phase, 
-       altitude as altitude, light as light, mission as mission, weather as weather, airspace as airspace
+       altitude as altitude, light as light, mission as mission, weather as weather, airspace as airspace,
+       aircraft_type as aircraft_type
 FROM r;
