@@ -1,0 +1,4 @@
+
+CREATE OR REPLACE TABLE feat AS
+SELECT unit, ts, y, exog_human_factors, exog_maintenance, exog_weather, exog_environmental, exog_available, hour(ts) AS hr, dayofweek(ts) AS dow, month(ts) AS mon, dayofyear(ts) AS doy, LAG(y, 1) OVER w AS y_lag1, LAG(y, 2) OVER w AS y_lag2, LAG(y, 3) OVER w AS y_lag3, LAG(y, 4) OVER w AS y_lag4, LAG(y, 8) OVER w AS y_lag8, LAG(y, 16) OVER w AS y_lag16, AVG(y) OVER (w ROWS BETWEEN 3 PRECEDING AND CURRENT ROW) AS y_ma_season, STDDEV(y) OVER (w ROWS BETWEEN 3 PRECEDING AND CURRENT ROW) AS y_sd_season, y - LAG(y, 1) OVER w AS y_diff1, LAG(exog_human_factors, 4) OVER w AS exog_human_factors_lag_season, LAG(exog_maintenance, 4) OVER w AS exog_maintenance_lag_season, LAG(exog_weather, 4) OVER w AS exog_weather_lag_season, LAG(exog_environmental, 4) OVER w AS exog_environmental_lag_season, LEAD(y, 4) OVER w AS y_h4, LEAD(y, 5) OVER w AS y_h5
+FROM clean WINDOW w AS (PARTITION BY unit ORDER BY ts);

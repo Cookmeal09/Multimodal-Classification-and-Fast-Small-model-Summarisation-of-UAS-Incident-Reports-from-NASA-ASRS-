@@ -1,0 +1,5 @@
+1. Biến mục tiêu lệch phải rất mạnh: skewness = 6.74, 72% quan sát (sân bay, quý) bằng 0 và phương sai gấp khoảng 6.4 lần trung bình (fig_eda_distribution, table_describe_ts), nên cần log1p hoặc mô hình cho dữ liệu đếm.
+2. Các sân bay khác nhau rất nhiều: sân bay đông nhất có số báo cáo trung bình gấp 133.38 lần sân bay ít nhất (fig_eda_units), nên mô hình toàn cục phải xử lý mức chênh này.
+3. Mùa vụ theo quý gần như không có: sức mạnh mùa vụ chỉ 0.018 (fig_eda_seasonality) và ACF tại lag 4 chỉ 0.05, ACF lag 1 = 0.096 (fig_eda_acf), nên baseline seasonal naive sẽ yếu.
+4. Biến ngoại sinh NTSB có tín hiệu yếu và không đồng đều: Spearman |rho| <= 0.030; số báo cáo trung bình tăng từ 0.71 (0 finding) lên 1.29 (3+ finding) với exog_human_factors, trong khi exog_weather không có ý nghĩa thống kê (p = 0.55) (table_covariate_corr, fig_eda_covariate_*).
+5. Có dịch chuyển chế độ: thay đổi quý-sang-quý lớn nhất bằng 0.871 lần trung bình (fig_eda_regime), nằm trong giai đoạn kiểm thử từ 2024, nên cần báo cáo ở RQ3.
